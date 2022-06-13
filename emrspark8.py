@@ -65,14 +65,16 @@ class spark_job:
     #Defining the function for masking   
     def masking(self,df,col_list):
         for column in col_list:
-            df = df.withColumn("masked_"+column,f.sha2(f.col(column),256))
+            if column in df.columns:
+                print(df.columns)
+                df = df.withColumn("masked_"+column,f.sha2(f.col(column),256))
         return df
     def read_delta_table(self,lookup_location,datasetName):
         targetTable = DeltaTable.forPath(spark,lookup_location+datasetName)
         return targetTable
         
-    def lookup_dataset(self,df):
-        lookup_location = self.config_details['lookup-dataset']['data-location']+"lookup_data"
+    def lookup_dataset(self,df,name):
+        lookup_location = self.config_details['lookup-dataset']['data-location']+"Lookup_data"+name
         pii_cols =  self.config_details['lookup-dataset']['pii-cols']
         datasetName = 'lookup'
         df_source = df.withColumn("begin_date",f.current_date())
@@ -162,9 +164,10 @@ for i in datasets:
         job.cols_casting()
         typecasted_active = job.casting(spark_job.data_casting,active_rawzone)
         masked_active = job.masking(typecasted_active,spark_job.data_masking)
-        print(masked_active)
+        #print(masked_active)
         masked_active.printSchema()
-        df = job.lookup_dataset(masked_active)
+        job.raw_to_staging_zone(masked_active,i)
+        df = job.lookup_dataset(masked_active,i)
         #job.write(masked_active,"parquet","s3://dharika-staging-zone-nv/Final/")
         job.raw_to_staging_zone(df,i)
         #masked_active.show(7)
