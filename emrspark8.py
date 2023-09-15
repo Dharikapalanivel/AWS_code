@@ -7,7 +7,7 @@ from pyspark.conf import SparkConf
 import sys
 import pyspark.sql.utils
 spark = SparkSession.builder.appName('Transformation_Casting').getOrCreate()
-spark.sparkContext.addPyFile("s3://dhari-landing-zone-nv/Dependencies/delta-core_2.12-0.8.0.jar")
+spark.sparkContext.addPyFile("s3://dharika-landing-zone-nv/Dependencies/delta-core_2.12-0.8.0.jar")
 from delta import *
 #Create a class with all required functions
 class spark_job: 
