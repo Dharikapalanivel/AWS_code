@@ -13,7 +13,7 @@ from delta import *
 class spark_job: 
     # Reading app configuration file from S3 and return config details 
     def __init__(self):  
-        configData = spark.sparkContext.textFile("s3://dharika-landing-zone-nv/Configuration/app_configuration.json").collect()
+        configData = spark.sparkContext.textFile("s3://dharik-landing-zone-nv/Configuration/app_configuration.json").collect()
         data       = ''.join(configData)
         self.config_details = json.loads(data)
         self.datasets=['Actives','Viewership']
