@@ -10,14 +10,12 @@ on:
     
 jobs:   
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, c360]
     steps:
     - name: Checkout
       uses: actions/checkout@v2  
     - if: github.event.review.state == 'approved'
       run: echo "This PR was approved"
-    - name: Copy from git to s3
-      run: 
         s3_path="s3://c360-airflow-dags-dev/code/"
         echo "Copying files"
         aws s3 cp emrspark8.py ${s3_path}
