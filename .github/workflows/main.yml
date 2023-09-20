@@ -15,7 +15,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2  
     - if: github.event.review.state == 'approved'
-      run: echo "This PR was approved"
+      run: echo "This change was approved"
         s3_path="s3://c360-airflow-dags-dev/code/"
         echo "Copying files"
         aws s3 cp emrspark8.py ${s3_path}
