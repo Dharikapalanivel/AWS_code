@@ -1,12 +1,7 @@
 name: Carepack Deployment Workflow
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: [ "main" ]
-  pull_request_review:
-    types: [submitted]
+  [push,workflow_dispatch,pull_request,pull_request_review]
     
 jobs:   
   build:
@@ -26,6 +21,6 @@ jobs:
       uses: EndBug/add-and-commit@v7
       with:
         add: '["s3-zip/"]'
-        message: 'My commit message'
+        message: 'Updated zip file'
         push: true
       
