@@ -23,4 +23,3 @@ jobs:
         add: '["s3-zip/"]'
         message: 'Updating zip file'
         push: true
-      
