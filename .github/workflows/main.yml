@@ -13,5 +13,5 @@ jobs:
       run: echo "This change was approved"
     - name: Zipping files
       run: |
-        zip -r -q /s3-zip/code2.zip ssetl/
+        zip -r -q /s3-zip/code2.zip code/
       shell: bash
