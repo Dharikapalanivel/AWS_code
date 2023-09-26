@@ -14,3 +14,4 @@ jobs:
     - name: Zipping files
       run: Compress-Archive -Path code/ -DestinationPath s3_zip/code.zip -Update
       shell: pwsh
+      
