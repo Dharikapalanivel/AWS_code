@@ -12,5 +12,6 @@ jobs:
     - if: github.event.review.state == 'approved'
       run: echo "This change was approved"
     - name: Zipping files
-      run: git archive --format zip --output s3_zip/code.zip HEAD
-      
+      run: |
+        git archive --format zip --output s3_zip/code.zip HEAD
+      shell: bash
