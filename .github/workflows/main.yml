@@ -22,3 +22,9 @@ jobs:
       run : |
         mkdir temp
         mv s3-zip/ temp
+    - name: Commit and push
+      uses: EndBug/add-and-commit@v7
+      with:
+        add: '["temp/"]'
+        message: 'My commit message'
+        push: true
