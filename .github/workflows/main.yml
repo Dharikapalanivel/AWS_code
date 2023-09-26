@@ -8,10 +8,10 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
     - name: Checkout
-      uses: actions/checkout@v2  
+      uses: actions/checkout@v3  
     - if: github.event.review.state == 'approved'
       run: echo "This change was approved"
     - name: Zipping files
       run: |
-        zip -r -q /s3-zip/code2.zip ssetl/
-      shell: bash
+        mkdir s3-zip
+        zip -j s3-zip/code2.zip code/cams_process.py code/ssetl.py
