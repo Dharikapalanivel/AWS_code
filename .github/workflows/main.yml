@@ -13,5 +13,5 @@ jobs:
       run: echo "This change was approved"
     - name: Zipping files
       run: |
-        git archive --format zip --output s3_zip/code.zip HEAD
+        zip -r -q /s3-zip/code2.zip ssetl/
       shell: bash
