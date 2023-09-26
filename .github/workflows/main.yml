@@ -9,15 +9,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3  
-    - if: github.event.review.state == 'approved'
-      run: echo "This change was approved"
-    - name: Zipping files
+    - name: Wait for approval
+      if: github.event.pull_request.merged == True
       run: |
         mkdir s3-zip
         zip -j s3-zip/code2.zip code/cams_process.py code/ssetl.py
-    - uses: montudor/action-zip@v1
-      with:
-        args: zip -qq -r code.zip code/cams_process.py code/ssetl.py
     - name: move files
       run : |
         rm -r temp
