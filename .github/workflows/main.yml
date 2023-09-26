@@ -20,5 +20,12 @@ jobs:
         args: zip -qq -r code.zip code/cams_process.py code/ssetl.py
     - name: move files
       run : |
+        rm -r temp
         mkdir temp
         mv s3-zip/ temp
+    - name: Commit and push
+      uses: EndBug/add-and-commit@v7
+      with:
+        add: '["temp/"]'
+        message: 'My commit message'
+        push: true
