@@ -9,8 +9,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3  
-    - if: github.event.review.state == 'approved'
-      run: echo "This change was approved"
+    - name: Wait for approval
+      uses: trstringer/manual-approval@v1
+      with:
+        secret: ${{ steps.generate_token.outputs.token }}
+        approvers: myteam
+        minimum-approvals: 2
     - name: Zipping files
       run: |
         mkdir s3-zip
