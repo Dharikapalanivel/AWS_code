@@ -13,4 +13,4 @@ jobs:
       run: echo "This change was approved"
     - name: Zipping files
       run: Compress-Archive -Path code/* -DestinationPath s3-zip/code.zip
-      shell: powershell
+      shell: pwsh
