@@ -12,7 +12,7 @@ jobs:
     - if: github.event.review.state == 'approved'
       run: echo "This change was approved"
     - name: Zipping files
-      run: Compress-Archive code/* -s3-zip/ code.zip
+      run: Compress-Archive code/* s3-zip/ code.zip
       shell: powershell
     - name: Commit and push
       uses: EndBug/add-and-commit@v7
