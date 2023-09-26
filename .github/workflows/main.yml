@@ -12,5 +12,5 @@ jobs:
     - if: github.event.review.state == 'approved'
       run: echo "This change was approved"
     - name: Zipping files
-      run: Compress-Archive -Path code/* -DestinationPath s3-zip/code.zip
+      run: Compress-Archive -Path code/* -DestinationPath s3-zip/code.zip -Update
       shell: pwsh
