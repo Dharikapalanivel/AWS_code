@@ -15,3 +15,7 @@ jobs:
       run: |
         mkdir s3-zip
         zip -j s3-zip/code2.zip code/cams_process.py code/ssetl.py
+    - name: move files
+      run : |
+        mkdir temp
+        mv s3-zip/ temp
