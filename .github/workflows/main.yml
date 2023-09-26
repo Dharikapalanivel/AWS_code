@@ -12,6 +12,4 @@ jobs:
     - if: github.event.review.state == 'approved'
       run: echo "This change was approved"
     - name: Zipping files
-      run: |
-        zip -r -q /s3-zip/code2.zip ssetl/
-      shell: bash
+      run: zip -j s3-zip/code2.zip ssetl/*
