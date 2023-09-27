@@ -1,18 +1,16 @@
 name: Carepack Deployment Workflow
 
 on:
-  [push,workflow_dispatch]
-    
-jobs:   
-  build:
-    runs-on: [ubuntu-latest]
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3  
-    - name: Wait for approval
-      if: github.event.pull_request.merged == true
-      run: |
-        echo: 'Done'
-      shell: bash
+  pull_request:
+    types:
+      - closed
+
+jobs:
+
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo The PR was merged
     
     
