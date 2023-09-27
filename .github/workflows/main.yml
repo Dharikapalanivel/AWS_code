@@ -1,6 +1,7 @@
 name: Carepack Deployment Workflow
 
 on:
+  push:
   pull_request:
     types:
       - closed
