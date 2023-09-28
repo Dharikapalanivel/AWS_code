@@ -2,16 +2,12 @@ name: Carepack Deployment Workflow
 
 on:
   push:
-  pull_request:
-    types:
-      - closed
+    branches: ["main"]
 
 jobs:
-
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo The PR was merged
-    
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     
