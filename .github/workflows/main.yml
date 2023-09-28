@@ -10,4 +10,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - if: github.event.review.state == 'approved'
+      run: |
+        mkdir s3-zip
     
